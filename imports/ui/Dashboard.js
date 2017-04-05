@@ -1,6 +1,7 @@
 import React from 'react';
 
 import PrivateHeader from './PrivateHeader';
+import NoteList from './NoteList';
 
 
 //stateless funcitonal component
@@ -9,7 +10,7 @@ export default () => {
     <div>
       <PrivateHeader title="Your Dashboard"/>
       <div className="page-content">
-        Dashboard page content.
+        <NoteList/>
       </div>
 
     </div>
