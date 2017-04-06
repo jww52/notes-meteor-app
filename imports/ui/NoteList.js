@@ -5,18 +5,27 @@ import { createContainer } from 'meteor/react-meteor-data';
 import { Notes } from '../api/notes';
 import NoteListHeader  from './NoteListHeader';
 import NoteListItem from './NoteListItem';
+import NoteListEmptyItem from './NoteListEmptyItem';
+
+//1. Create new file setup default export for functional component
+//2. pick some texty text mothafucka you have no notes
+//3. Setup notelist to render empty note message when notes array is empty conditional
 
 export const NoteList = (props) => {
-  return(
-    <div>
-      <NoteListHeader/>
-      {props.notes.map((note) => {
+  console.log('notes.length', props.notes.length);
+    return(
+      <div>
+        <NoteListHeader/>
+        { props.notes.length === 0 ? <NoteListEmptyItem/> : undefined}
+
+        {props.notes.map((note) => {
         return <NoteListItem key={note._id} note={note}/>;
-    })};
-      NoteList { props.notes.length }
-    </div>
-  );
-};
+      })}
+        NoteList { props.notes.length }
+      </div>
+    );
+  };
+
 
 NoteList.propTypes = {
   notes: React.PropTypes.array.isRequired
