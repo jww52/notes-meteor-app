@@ -36,16 +36,12 @@ export default createContainer(() => {
   const selectedNoteId = Session.get('selectedNoteId');
   Meteor.subscribe('notes');
 
-  //take notes add selected property to object
-  //set to true if match false if notes
-
-
   return {
-    notes: Notes.find().fetch().map(function(note) {
+    notes: Notes.find({}, {sort: {updatedAt : -1}}).fetch().map(function(note) {
       return {
         ...note,
         selected: note._id === selectedNoteId
-      };  
+      };
     })
   };
 }, NoteList);
